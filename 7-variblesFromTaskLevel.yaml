@@ -1,0 +1,13 @@
+--- 
+- name: checking the  varibles from the task level 
+  hosts: all 
+  vars:
+    NAME: FROM play level
+    COURSE: DEVOPS
+  tasks:
+    - name: i am from task1
+      vars: 
+        location: i am comming from the task level
+        NAME: fromTaskLevel
+      ansible.builtin.debug: 
+        msg: 'Hello my name is {{ nNAME }} and location is {{ location }}'
