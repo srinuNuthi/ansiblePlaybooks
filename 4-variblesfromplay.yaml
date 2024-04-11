@@ -1,0 +1,11 @@
+--- 
+- name: checking the variabless from the play 
+  hosts: all 
+  vars:
+   NAME: SRINU
+   COURSE: AWS WITH DEVOPS
+   DURATION: 24
+  tasks:
+    - name: printing the variables
+      ansible.builtin.debug: 
+        msg: 'Hello {{ NAME }}, welcome to the course {{ COURSE }} and duration is {{ dDURATION }}'
