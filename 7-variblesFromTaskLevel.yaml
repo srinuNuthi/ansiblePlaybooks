@@ -10,4 +10,4 @@
         location: i am comming from the task level
         NAME: fromTaskLevel
       ansible.builtin.debug: 
-        msg: 'Hello my name is {{ nNAME }} and location is {{ location }}'
+        msg: 'Hello my name is {{ NAME }} and location is {{ location }}'
