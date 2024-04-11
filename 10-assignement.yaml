@@ -17,6 +17,6 @@
       ansible.builtin.user:
         name: '{{ username }}'
         state: present
-      when: Output.rc ! == 0
+      when: '{{ Output.rc }}  ! == 0'
         
    
