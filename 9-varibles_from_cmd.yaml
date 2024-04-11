@@ -1,0 +1,7 @@
+--- 
+name: varibles from the command line 
+hosts: all 
+tasks: 
+  - name: checking the cmd varibles
+    ansible.builtin.debug:
+      msg: 'hello my name is {{ name }}'
