@@ -2,8 +2,10 @@
 - name: installing the httpd
   become: yes
   hosts: all
+  vars: 
+    NAME: httpd
   tasks: 
     - name: checking the ansible package
       ansible.builtin.package:
-        name: "httpd" 
+        name: '{{ NAME }}'
         state: present 
