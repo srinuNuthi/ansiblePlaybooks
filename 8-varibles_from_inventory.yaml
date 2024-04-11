@@ -1,0 +1,7 @@
+--- 
+- name: i am from the inventory
+  hosts: all 
+  tasks:
+    - name: i am from inventory
+      ansible.builtin.debug:
+        msg: 'Hello my name is {{ name }}'
