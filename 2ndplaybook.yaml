@@ -1,0 +1,14 @@
+---
+- name: install nginx
+  hosts: all 
+  become: yes
+  tasks:
+    - name: install nginx software
+      ansible.builtin.apt:
+        update_cache: yes
+        name: nginx
+        state: present
+      when: ansible_nodename == "ip-172-31-92-31"
+
+
+

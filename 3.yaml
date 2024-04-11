@@ -1,0 +1,9 @@
+---
+- name: installing the httpd
+  become: yes
+  hosts: all
+  tasks: 
+    - name: checking the ansible package
+      ansible.builtin.package:
+        name: "httpd" 
+        state: present 

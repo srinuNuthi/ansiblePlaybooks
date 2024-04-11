@@ -1,0 +1,79 @@
+---
+- name: install wildfly
+  hosts: all
+  become: yes
+  tasks:
+    - name: update the package
+      ansible.builtin.package:
+        update_cache: yes
+        name: default-jdk
+        state: present
+
+    - name: getting the url
+      ansible.builtin.uri:
+        url: "https://api.github.com/repos/wildfly/wildfly/releases/latest"
+      register: wildfly_release_response
+
+    - name: extract tag_name from response
+      set_fact:
+        WILDFLY_RELEASE: "{{ wildfly_release_response.json.tag_name }}"
+
+    - name: download through wget
+      ansible.builtin.get_url:
+        dest: "/home/ubuntu/wildfly-{{ WILDFLY_RELEASE }}.tar.gz"
+        url: "https://github.com/wildfly/wildfly/releases/download/{{ WILDFLY_RELEASE }}/wildfly-{{ WILDFLY_RELEASE }}.tar.gz"
+
+    - name: create the folder in the /opt/wildfly
+      ansible.builtin.file:
+        path: /opt/wildfly
+        state: directory
+
+    - name: tar the downloaded file
+      ansible.builtin.unarchive:
+        dest: /opt/wildfly
+        src: /home/ubuntu//wildfly-{{ WILDFLY_RELEASE }}.tar.gz
+        remote_src: yes
+
+    - name: creating the group
+      ansible.builtin.group:
+        name: wildfly
+        system: yes
+
+    - name: creating a user
+      ansible.builtin.user:
+        name: wildfly
+        shell: /sbin/nologin
+        create_home: true
+        home: /opt/wildfly
+        group: wildfly
+        system: yes
+
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /etc/wildfly
+        state: directory
+
+    - name: copy the config files3
+      ansible.builtin.copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf
+        dest: /etc/wildfly/
+        remote_src: yes
+
+    - name: copy the config files2
+      ansible.builtin.copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+        dest: /etc/systemd/system/
+        remote_src: yes
+
+    - name: copy the config files1
+      ansible.builtin.copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/launch.sh
+        dest: /opt/wildfly/bin/
+        remote_src: yes
+
+    - name: Change file ownership, group and permissions
+      ansible.builtin.file:
+        path: /opt/wildfly/bin/launch.sh
+        mode: '0777'
+        remote_src: yes
+
