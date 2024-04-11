@@ -11,7 +11,7 @@
       register: Output
     - name: just checking the condition
       ansible.builtin.debug
-        msg: Output.rc 
+        msg: '{{ Output.rc  }}'
     # - name: create the user if not present
     #   ansible.builtin.user:
     #     name: '{{ username }}'
