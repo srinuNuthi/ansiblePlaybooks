@@ -1,0 +1,13 @@
+--- 
+- name: assignment
+  hosts: all 
+  vars_prompt:
+    name: username
+    prompt: enter the user name
+    private: false
+  tasks:
+    - name: running the id command
+      ansible.builtin.command: id '{{ username }}'
+      register: Output
+        
+   
