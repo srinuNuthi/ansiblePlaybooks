@@ -9,6 +9,7 @@
     - name: running the id command
       ansible.builtin.command: id '{{ username }}'
       register: Output
+      ignore_errors: true
     - name: just checking the condition
       ansible.builtin.debug:
         msg: '{{ Output.rc  }}'
