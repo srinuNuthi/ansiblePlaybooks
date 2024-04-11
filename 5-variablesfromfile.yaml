@@ -1,0 +1,7 @@
+--- 
+- name: variables from the files
+  hosts: all 
+  tasks: 
+    - name: printing the variables from the varibles files
+      ansible.builtin.debug:
+        msg: 'Hello {{ NAME }}, welcome to the course {{ COURSE }} and duration is {{ DURATION }} and location is {{ LOCATION }}'
