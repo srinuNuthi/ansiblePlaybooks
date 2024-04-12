@@ -5,7 +5,7 @@
   tasks: 
     - name: install the wget
       ansible.builtin.package:
-        name: wgett
+        name: wget
         state: absent
       notify:
         - i am comming from the handlers section
