@@ -6,9 +6,7 @@
     - name: install the wget
       ansible.builtin.package:
         name: wgett
-        state: present
-      register: output
-      ignore_errors: true
+        state: abset
       notify:
         - i am comming from the handlers section
       
@@ -17,4 +15,3 @@
     - name: i am comming from the handlers section
       ansible.builtin.debug:
         msg: now i am running the handler 
-      when: output.rc != 0
