@@ -6,7 +6,7 @@
     - name: install the wget
       ansible.builtin.package:
         name: wgett
-        state: abset
+        state: absent
       notify:
         - i am comming from the handlers section
       
