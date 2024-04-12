@@ -4,8 +4,8 @@
   tasks:
     - name: install via loops
       ansible.builtin.package:
-        name:
-        state:
+        name: "{{ item }}"
+        state:  present
       loop:
         - wget
         - curl
