@@ -11,18 +11,18 @@
         - curl
         - net-tools
         - nmap
-  - name: Using dict2items
-  ansible.builtin.debug:
-    msg: "{{ item.key }} - {{ item.value }}"
-  loop: "{{ tag_data | dict2items }}"
-  vars:
-    tag_data:
-      Environment: dev
-      Application: payment
+    - name: Using dict2items
+      ansible.builtin.debug:
+        msg: "{{ item.key }} - {{ item.value }}"
+      loop: "{{ tag_data | dict2items }}"
+      vars:
+        tag_data:
+        Environment: dev
+        Application: payment
 
-  - name: Register loop output as a variable
-  ansible.builtin.shell: "echo {{ item }}"
-  loop:
-    - "one"
-    - "two"
-  register: echo
+    - name: Register loop output as a variable
+      ansible.builtin.shell: "echo {{ item }}"
+    loop:
+      - "one"
+      - "two"
+    register: echo
