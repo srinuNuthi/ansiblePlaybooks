@@ -9,7 +9,8 @@
         state: present
       register: output
       ignore_errors: true
-
+      notify:
+        - i am comming from the handlers section
       
   
   handlers:
