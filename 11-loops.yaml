@@ -11,8 +11,7 @@
         - curl
         - net-tools
         - nmap
-      loop_control:
-        index_var: my_idx
+      l
     
     - name: Using dict2items
       ansible.builtin.debug:
