@@ -4,13 +4,15 @@
   tasks:
     - name: install via loops
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: "{{ item }} with index {{ my_idx }}"
         state: present
       loop:
         - wget
         - curl
         - net-tools
         - nmap
+      loop_control:
+        index_var: my_idx
     
     - name: Using dict2items
       ansible.builtin.debug:
