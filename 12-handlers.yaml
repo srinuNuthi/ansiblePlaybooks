@@ -1,0 +1,19 @@
+--- 
+- name: checking the working way of handlers
+  hosts: all 
+  become: yes
+  tasks: 
+    - name: install the wget
+      ansible.builtin.package:
+        name: wget
+        state: present
+      register: output
+
+      
+  
+  handlers:
+    - name: Restart apache
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+      when: output.rc != 0
