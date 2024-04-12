@@ -1,0 +1,13 @@
+--- 
+- name: checking the loops
+  hosts: all 
+  tasks:
+    - name: install via loops
+      ansible.builtin.package:
+        name:
+        state:
+      loop:
+        - wget
+        - curl
+        - net-tools
+        - nmap
