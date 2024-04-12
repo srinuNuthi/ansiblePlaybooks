@@ -5,14 +5,15 @@
   tasks: 
     - name: install the wget
       ansible.builtin.package:
-        name: wget
+        name: wgett
         state: present
       register: output
+      ignore_errors: true
 
       
   
   handlers:
-    - name: Restart apache
+    - name: i am comming from the handlers section
       ansible.builtin.service:
         name: httpd
         state: restarted
