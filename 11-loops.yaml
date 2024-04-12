@@ -1,28 +1,29 @@
---- 
+---
 - name: checking the loops
   hosts: all 
   tasks:
     - name: install via loops
       ansible.builtin.package:
         name: "{{ item }}"
-        state:  present
+        state: present
       loop:
         - wget
         - curl
         - net-tools
         - nmap
+
     - name: Using dict2items
       ansible.builtin.debug:
         msg: "{{ item.key }} - {{ item.value }}"
       loop: "{{ tag_data | dict2items }}"
       vars:
         tag_data:
-        Environment: dev
-        Application: payment
+          Environment: dev
+          Application: payment
 
     - name: Register loop output as a variable
       ansible.builtin.shell: "echo {{ item }}"
-    loop:
-      - "one"
-      - "two"
-    register: echo
+      loop:
+        - "one"
+        - "two"
+      register: echo
