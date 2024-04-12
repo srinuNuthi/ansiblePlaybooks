@@ -14,7 +14,6 @@
   
   handlers:
     - name: i am comming from the handlers section
-      ansible.builtin.service:
-        name: httpd
-        state: restarted
+      ansible.builtin.debug:
+        msg: now i am running the handler 
       when: output.rc != 0
