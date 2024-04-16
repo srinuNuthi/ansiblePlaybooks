@@ -2,6 +2,8 @@
 - name: checking the tags
   hosts: all
   become: yes
+  gather_facts: false
+  strategy: free
   tasks:
     - name: run this task1
       ansible.builtin.debug:
