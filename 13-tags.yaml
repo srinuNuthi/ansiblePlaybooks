@@ -1,0 +1,15 @@
+--- 
+- name: checking the tags
+  hosts: all
+  become: yes
+  tasks:
+    - name: run this task1
+      ansible.builtin.debug:
+        msg: i am from task1
+      tags:
+      - task1
+    - name: run this task2
+      ansible.builtin.debug:
+        msg: i am from task2
+      tags:
+      - task2
